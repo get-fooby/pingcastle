@@ -145,7 +145,7 @@
     <value>The purpose is to ensure that the minimum set of subnet as been configured in the domain</value>
   </data>
   <data name="S_DC_SubnetMissing_Solution" xml:space="preserve">
-    <value>Locate the IP address which was found as not being part of declared subnet then add this subnet to the "Active Directory Sites" tool. If you found IPv6 addresses and it was not expected, you should disable in addition the protocol IPv6 on the network card.</value>
+    <value>Locate the IP address which was found as not being part of declared subnet then add this subnet to the "Active Directory Sites" tool. If you found IPv6 addresses and it was not expected, you should disable IPv6 on the network card.</value>
   </data>
   <data name="S_DC_SubnetMissing_Rationale" xml:space="preserve">
     <value>The subnet declaration is incomplete [{count} ip of DC not found in declared subnets]</value>
@@ -154,10 +154,10 @@
     <value>Domain Controller {0} ip address {1}</value>
   </data>
   <data name="A_BackupMetadata_Description" xml:space="preserve">
-    <value>The purpose is check if the backups are actually up to date in case they are needed. The alert can be triggered when a domain is back up using non recommended methods</value>
+    <value>The purpose is check if the backups are up to date. The alert can be triggered when a domain is back up using non-recommended methods</value>
   </data>
   <data name="A_BackupMetadata_Solution" xml:space="preserve">
-    <value>Planify backups based on Microsoft standard. These standards depends on the Operating System. Example with the wbadmin utility: &lt;i&gt;wbadmin start systemstatebackup -backuptarget:d:&lt;/i&gt;</value>
+    <value>Plan backups based on Microsoft standards. These standards depends on the Operating System. For example with the wbadmin utility: &lt;i&gt;wbadmin start systemstatebackup -backuptarget:d:&lt;/i&gt;. It is considered better to export the domain data using Windows Server Backup to a separate physical or virtual disk, and protect this disk with any enterprise wide backup solution.</value>
   </data>
   <data name="A_BackupMetadata_Rationale" xml:space="preserve">
     <value>Last AD backup has been performed {count} day(s) ago</value>
@@ -176,7 +176,7 @@
     <value>The purpose is to make sure that there is a proper password policy in place for the native local administrator account.</value>
   </data>
   <data name="A_LAPS_Not_Installed_Solution" xml:space="preserve">
-    <value>If you don't have any provisionning process or password solution to manage local administrators, you should install the LAPS solution. If you mitigate the risk differently, you should add this rule as an exception, as the risk is covered.</value>
+    <value>If you don't have any provisioning process or password solution to manage local administrators, you should install the LAPS solution. If you mitigate the risk differently, you should add this rule as an exception, as the risk is covered.</value>
   </data>
   <data name="A_LAPS_Not_Installed_Rationale" xml:space="preserve">
     <value>LAPS doesn't seem to be installed</value>
@@ -197,7 +197,7 @@
     <value>The purpose is to verify if Domain Controller are vulnerable to the SMB v1 vulnerability</value>
   </data>
   <data name="S_SMB_v1_Solution" xml:space="preserve">
-    <value>It is highly recommended by Microsoft to disable SMB v1 whenever it is possible on both client and server side. &lt;b&gt;Do note that if you are still not following best practices regarding the usage of deprecated OS (Windows 2000, 2003, XP, CE), regarding Network printer using SMBv1 scan2shares functionnalities, or regarding software accessing Windows share with a custom implementation relying on SMB v1, you should consider fixing this issues before disabling SMB v1, as it will generates additionnal errors&lt;/b&gt;.</value>
+    <value>It is highly recommended by Microsoft to disable SMB v1 on both clients and servers. &lt;b&gt;Do note that if you are still not following best practices regarding the usage of deprecated OS (Windows 2000, 2003, XP, CE) or using Network printers and scanners which use SMBv1 only or regarding software accessing Windows share with a custom implementation relying on SMB v1, you should consider fixing those issues before disabling SMB v1, as it will remove access to these older devices&lt;/b&gt;.</value>
   </data>
   <data name="S_SMB_v1_Rationale" xml:space="preserve">
     <value>SMB v1 activated on {count} DC</value>
@@ -209,7 +209,7 @@
     <value>The purpose is to verify if Domain Controller are vulnerable to the MS14-068 vulnerability</value>
   </data>
   <data name="S_Vuln_MS14_068_Solution" xml:space="preserve">
-    <value>To fix the security breach, you should path the DC as soon as it has been established it was vulnerable. You can verify that using a program in the links: this program will check remotely the last startup time of the DC and evaluate the risk</value>
+    <value>To fix the security breach, you should patch the DC as soon as it has been established it was vulnerable. You can verify that using a program in the links: this program will check remotely the last startup time of the DC and evaluate the risk</value>
   </data>
   <data name="S_Vuln_MS14_068_Rationale" xml:space="preserve">
     <value>Number of DC vulnerable to MS14-068 = {count} (&gt;0)</value>
@@ -218,7 +218,7 @@
     <value>Domain controller {0} based on {1}</value>
   </data>
   <data name="A_MembershipEveryone_Description" xml:space="preserve">
-    <value>The purpose is to identify if there are restricted group such as local administrators, terminal server access, … where Authenticated Users or Everyone is being ganted access by a GPO</value>
+    <value>The purpose is to identify if there are restricted groups such as local administrators, terminal server access, … where Authenticated Users or Everyone is being granted access by a GPO</value>
   </data>
   <data name="A_MembershipEveryone_Solution" xml:space="preserve">
     <value>In order to correct the issue, you should edit the GPO and remove the "Members" security access rule. Another solution is to change the group by a more targeted one containing a limited set of users.</value>
@@ -230,7 +230,7 @@
     <value>Found in GPO {0} member of {1} user {2}</value>
   </data>
   <data name="P_DCOwner_Description" xml:space="preserve">
-    <value>The purpose is to perform a review of which accounts have ownership rights on domain controller and can then modify their permissions</value>
+    <value>The purpose is to perform a review of which accounts have ownership rights on a domain controller object and can then modify its permissions</value>
   </data>
   <data name="P_DCOwner_Solution" xml:space="preserve">
     <value>To solve this security issue, you should change the ownership of the domain controller to match the "Domain Administrators" group.
@@ -266,7 +266,7 @@ To change it, you can edit the owner of an object using &lt;a href="https://docs
     <value>Account(s) with SID History matching the domain = {count}</value>
   </data>
   <data name="S_ADRegistration_Description" xml:space="preserve">
-    <value>The purpose is to ensure that basic users cannot register extra computers in the domain</value>
+    <value>The purpose is to ensure that basic users cannot join additional computers to the domain</value>
   </data>
   <data name="S_ADRegistration_Solution" xml:space="preserve">
     <value>To solve the issue, the limit number of extra computers that can be registered by a basic user should be reduced by modifying the value of &lt;i&gt;ms-DS-MachineAccountQuota&lt;/i&gt; to zero (0). Another solution can be to remove altogether the authenticated users group in the domain controllers policy. Do note that if you need to set delegation to an account so it can add computers to the domain, it can be done through 2 methods: Delegation in the OU or by assigning the &lt;i&gt;SeMachineAccountPrivilege&lt;/i&gt; to a special group</value>
@@ -395,7 +395,7 @@ To change it, you can edit the owner of an object using &lt;a href="https://docs
     <value>The SIDHistory auditing group is present: SID History creation is enabled</value>
   </data>
   <data name="T_ScriptOutOfDomain_Description" xml:space="preserve">
-    <value>The purpose is to ensure that a compromise domain cannot use scripts located in it to compromise other domains</value>
+    <value>The purpose is to ensure that a compromised domain cannot use scripts located in it to compromise other domains</value>
   </data>
   <data name="T_ScriptOutOfDomain_Solution" xml:space="preserve">
     <value>Copy the login script to a share located inside the domain and not in trusted domains.</value>
@@ -410,19 +410,19 @@ To change it, you can edit the owner of an object using &lt;a href="https://docs
     <value>The purpose is to access without any account, aka NULL Sessions, within the Active Directory. A NULL Session is a session opened anonymously to access the AD, often used by attackers to perform a reckon operation on the AD, to identify weaknesses</value>
   </data>
   <data name="A_NullSession_Solution" xml:space="preserve">
-    <value>Locate other PingCastle rules such as A-PreWin2000Anonymous or A-DsHeuristicsAnonymous which triggered and  apply the solutions. You can use the PingCastle scanner mode to do a manual check and proove the extraction of the data.</value>
+    <value>Locate other PingCastle rules such as A-PreWin2000Anonymous or A-DsHeuristicsAnonymous which triggered and  apply the solutions. You can use the PingCastle scanner mode to do a manual check and prove the extraction of the data.</value>
   </data>
   <data name="A_NullSession_Rationale" xml:space="preserve">
-    <value>Number of DC with NULL SESSION enabled: {count}</value>
+    <value>Number of Domain Controllers with NULL SESSION enabled: {count}</value>
   </data>
   <data name="A_NullSession_Detail" xml:space="preserve">
     <value>DC involved: {0}</value>
   </data>
   <data name="A_PreWin2000Anonymous_Description" xml:space="preserve">
-    <value>The purpose is to identify domains that which allows access without any account because of a pre-Windows 2000 compatibility. </value>
+    <value>The purpose is to identify domains which allow access without an account because of pre-Windows 2000 compatibility. </value>
   </data>
   <data name="A_PreWin2000Anonymous_Solution" xml:space="preserve">
-    <value>Remove the "EveryOne" and "Anonymous" from the PreWin2000 group while making sure that the group "Authenticated Users" is present. Then reboot each DC</value>
+    <value>Remove the "Everyone" and "Anonymous" from the PreWin2000 group while making sure that the group "Authenticated Users" is present. Then reboot each DC</value>
   </data>
   <data name="A_PreWin2000Anonymous_Rationale" xml:space="preserve">
     <value>The group Everyone and/or Anonymous is present in the Pre Windows 2000 group.</value>
@@ -452,11 +452,11 @@ To change it, you can edit the owner of an object using &lt;a href="https://docs
     <value>Found in GPO {0} Subject is {1}</value>
   </data>
   <data name="A_NoServicePolicy_Description" xml:space="preserve">
-    <value>The purpose is to give information regarding a best practice for the Service Account password policy. Indeed, having a 20+ characters password for this account greatly helps reducing the risk behind Kerberoast attack (offline crack of the TGS tickets)</value>
+    <value>The purpose is to give information regarding a best practice for the Service Account password policy. Having a 20+ character password for this account greatly helps to reduce the risk of a Kerberoast attack (offline crack of the TGS tickets)</value>
   </data>
   <data name="A_NoServicePolicy_Solution" xml:space="preserve">
-    <value> The recommended way to handle service account is to use "Managed service accounts" introduced since Windows 2008 R2 (search for "msDS-ManagedServiceAccount").
-To solve the anomaly, you should implement a PSO or GPO password guarantying a 20+ length password.</value>
+    <value> The recommended way to handle service account is to use "Managed service accounts" introduced in Windows 2008 R2 (search for "msDS-ManagedServiceAccount").
+To solve the anomaly, you should implement a PSO or GPO password to mandate a 20+ length password.</value>
   </data>
   <data name="A_NoServicePolicy_Rationale" xml:space="preserve">
     <value>No password policy for service account found (MinimumPasswordLength&gt;=20)</value>
@@ -480,7 +480,7 @@ To solve the anomaly, you should implement a PSO or GPO password guarantying a 2
     <value>The purpose is to identify domains having a GPO which allows access to the domain without any account </value>
   </data>
   <data name="A_AnonymousAuthorizedGPO_Solution" xml:space="preserve">
-    <value>In order to remove the anonymous access, we advise to identify the GPO indicated by the program and change the setting restrictanonymous and restrictanonymoussam</value>
+    <value>In order to remove the anonymous access, we advise to identify the GPO indicated by the program and change the setting restrictanonymous and restrictanonymoussam</value>
   </data>
   <data name="A_AnonymousAuthorizedGPO_Rationale" xml:space="preserve">
     <value>{count} policies have been found where anonymous accesses can be used</value>
@@ -492,7 +492,7 @@ To solve the anomaly, you should implement a PSO or GPO password guarantying a 2
     <value>The authentication protocol NTLM v1 can use the LM password hash algorithm which is weak if enabled by a GPO.</value>
   </data>
   <data name="A_LMHashAuthorized_Solution" xml:space="preserve">
-    <value>a GPO explicitely disable the default security policy LmCompatibilityLevel or NoLMHash. Using the information provided, identify the setting modified in the GPO and fix it.</value>
+    <value>a GPO explicitly disables the default security policy LmCompatibilityLevel or NoLMHash. Using the information provided, identify the setting modified in the GPO and fix it.</value>
   </data>
   <data name="A_LMHashAuthorized_Rationale" xml:space="preserve">
     <value>One policy has been found where the LM hash can be used [{count}]</value>
@@ -516,7 +516,7 @@ To solve the anomaly, you should implement a PSO or GPO password guarantying a 2
     <value>The purpose is to verify if a GPO alters the password policy of the domain to enable reversible passwords</value>
   </data>
   <data name="A_ReversiblePwd_Solution" xml:space="preserve">
-    <value>In order to remove the anonymous access, we advise to identify the GPO indicated by the program and change the setting  "Store passwords using reversible encryption"</value>
+    <value>In order to remove the anonymous access, we advise to identify the GPO indicated by the program and change the setting  "Store passwords using reversible encryption"</value>
   </data>
   <data name="A_ReversiblePwd_Rationale" xml:space="preserve">
     <value>One policy has been found where the reversible encryption has been enabled</value>
@@ -534,7 +534,7 @@ To solve the anomaly, you should implement a PSO or GPO password guarantying a 2
     <value>Number of account using a smart card whose password is not changed: {count}</value>
   </data>
   <data name="A_PwdGPO_Description" xml:space="preserve">
-    <value>The purpose is to alert when a clear text password has been identified in the GPO. Regardless of whether the password is present or not, both the account and password should be considered compromised</value>
+    <value>The purpose is to alert when a clear text password has been identified in a GPO. Regardless of whether the password is present or not, both the account and password should be considered compromised</value>
   </data>
   <data name="A_PwdGPO_Solution" xml:space="preserve">
     <value>In order to solve this issue, you should manually change the password to a new one. If this password is shared on many systems, each system should have a different password. If the GPO was used to define the native local administrator account, it is recommended to install a password solution manager such as the LAPS solution. </value>
@@ -546,10 +546,10 @@ To solve the anomaly, you should implement a PSO or GPO password guarantying a 2
     <value>GPO: {0} login: {1} password: {2}</value>
   </data>
   <data name="A_AdminSDHolder_Description" xml:space="preserve">
-    <value>The purpose is to ensure that there is no rogue admin accounts in the Active Directory</value>
+    <value>The purpose is to ensure that there is no rogue admin accounts in the Active Directory</value>
   </data>
   <data name="A_AdminSDHolder_Solution" xml:space="preserve">
-    <value>These accounts should be reviewed, especially in regards with their past activities and have the admincount attribute removed. In order to identify which accounts are detected by this rule, we advise to run a Powershell command that will show you all users having this flag set: &lt;i&gt;get-adobject -ldapfilter "(admincount=1)"&lt;/i&gt;
+    <value>These accounts should be reviewed, especially in regards with their past activities and have the admincount attribute removed. In order to identify which accounts are detected by this rule, we advise to run a Powershell command that will show you all users having this flag set: &lt;i&gt;get-adobject -ldapfilter "(admincount=1)"&lt;/i&gt;
     Do not forget to look at the section AdminSDHolder below.</value>
   </data>
   <data name="A_AdminSDHolder_Rationale" xml:space="preserve">
@@ -560,7 +560,7 @@ To solve the anomaly, you should implement a PSO or GPO password guarantying a 2
   </data>
   <data name="A_Krbtgt_Solution" xml:space="preserve">
     <value>The password of the krbtgt account should be changed twice to invalidate the golden ticket attack.
-&lt;b&gt;Beware: two changes of the krbtgt password not replicated to domain controllers can break these domain controllers&lt;/b&gt;
+&lt;b&gt;Beware: two changes of the krbtgt password in quick succession will not replicated to all the domain controllers quick enough and will break these domain controllers&lt;/b&gt;
 There are several possibilities to change the krbtgt password. First, a Microsoft script can be run in order to guarantee the correct replication of these secrets. Unfortunately this script supports only English operating systems. Second, a more manual way is to essentialy reset the password manually once, then to wait 3 days, then to reset it again. This is the safest way as it ensures the password is no longer usable by the Golden ticket attack.</value>
   </data>
   <data name="A_Krbtgt_Rationale" xml:space="preserve">
@@ -785,7 +785,7 @@ Do not apply /quarantine on a forest trust: you will break the transitivity of t
     <value>trust without SID Filtering: {0}</value>
   </data>
   <data name="S_Duplicate_Description" xml:space="preserve">
-    <value>The purpose is to very if they currently are duplicate accounts within the domain. A duplicate account is essentially a duplicate of two objets having the same attributes.</value>
+    <value>The purpose is to verify if there are duplicate accounts within the domain. A duplicate account is essentially a duplicate of two objects, both having the same attributes.</value>
   </data>
   <data name="S_Duplicate_Solution" xml:space="preserve">
     <value>Duplicate accounts often means there are weaknesses in term of processes, that is why they should be monitored and removed. To identify all duplicate accounts, you should use the following powershell commands: &lt;i&gt;get-adobject -ldapfilter "(cn=*cnf:*)"&lt;/i&gt; ; &lt;i&gt;get-adobject -ldapfilter "(sAMAccountName=$duplicate)"&lt;/i&gt;</value>
@@ -827,13 +827,13 @@ Do not apply /quarantine on a forest trust: you will break the transitivity of t
     <value>It is recommended to disable DES as an algorithm in the user configuration dialog or in the "msDSSupportedEncryptionTypes" attribute at LDAP level. It be disabled in the property of an account by unchecking the box "Use Kerberos DES encryption for this account"</value>
   </data>
   <data name="S_DesEnabled_Rationale" xml:space="preserve">
-    <value>Presence of Des Enabled account = {count}</value>
+    <value>Presence of DES Enabled account = {count}</value>
   </data>
   <data name="S_C_PrimaryGroup_Description" xml:space="preserve">
     <value>The purpose is to check for unsual value in the primarygroupid attribute used to store group membership</value>
   </data>
   <data name="S_C_PrimaryGroup_Solution" xml:space="preserve">
-    <value>Unless stronly justified, change the primary group id to its default. 513 or 514 for users, 516 or 521 for domain controllers, 514 or 515 for computers. The primary group can be edited in a friendly manner by editing the account with the "Active Directory Users and Computers" and after selecting the "Member Of" tab, "set primary group".</value>
+    <value>Unless strongly justified, change the primary group id to its default. 513 or 514 for users, 516 or 521 for domain controllers, 514 or 515 for computers. The primary group can be edited in a friendly manner by editing the account with the "Active Directory Users and Computers" and after selecting the "Member Of" tab, "set primary group".</value>
   </data>
   <data name="S_C_PrimaryGroup_Rationale" xml:space="preserve">
     <value>Presence of wrong primary group for computers: {count}</value>
@@ -842,7 +842,7 @@ Do not apply /quarantine on a forest trust: you will break the transitivity of t
     <value>The purpose is to check for unsual value in the primarygroupid attribute used to store group membership</value>
   </data>
   <data name="S_PrimaryGroup_Solution" xml:space="preserve">
-    <value>Unless stronly justified, change the primary group id to its default. 513 or 514 for users, 516 or 521 for domain controllers, 514 or 515 for computers. The primary group can be edited in a friendly manner by editing the account with the "Active Directory Users and Computers" and after selecting the "Member Of" tab, "set primary group".</value>
+    <value>Unless strongly justified, change the primary group id to its default. 513 or 514 for users, 516 or 521 for domain controllers, 514 or 515 for computers. The primary group can be edited in a friendly manner by editing the account with the "Active Directory Users and Computers" and after selecting the "Member Of" tab, "set primary group".</value>
   </data>
   <data name="S_PrimaryGroup_Rationale" xml:space="preserve">
     <value>Presence of wrong primary group for users: {count}</value>
@@ -1044,14 +1044,14 @@ Each security descriptor of the domain (including file shares for example) shoul
     <value>A Delegation is granted to Everyone</value>
   </data>
   <data name="A_AdminSDHolder_TechnicalExplanation" xml:space="preserve">
-    <value>A check is performed non-admin accounts in order to identify if they have an attribute &lt;i&gt;admincount&lt;/i&gt; set. If they have this attribute, it means that this account, which is not supposed to be admin, has been granted administrator rights in the past. This tipically happens when an administrator gives temporary rights to a normal account, off process.</value>
+    <value>A check is performed non-admin accounts in order to identify if they have an attribute &lt;i&gt;admincount&lt;/i&gt; set. If they have this attribute, it means that this account, which is not supposed to be admin, has been granted administrator rights in the past. This typically happens when an administrator gives temporary rights to a normal account, off process.</value>
   </data>
   <data name="A_AnonymousAuthorizedGPO_TechnicalExplanation" xml:space="preserve">
     <value>It is possible that domains are set to authorize connection without any account, which represents a security breach. It allows potential attackers to enumerate all the users and computers belonging to a domain, in order to identify very efficiently future weak targets.
 It is possible to verify the results provided by the PingCastle solution by using a Kali distribution. You should run [rpcclient -U " target_ip_address] and press enter at the password prompt to finally type [enumdomusers].</value>
   </data>
   <data name="A_BackupMetadata_TechnicalExplanation" xml:space="preserve">
-    <value>A verification is done on the backups, ensuring that the backup is performed according to Microsoft standard. Indeed at each backup the DIT Database Partition Backup Signature is updated.  if for any reasons, backups are needed to perform a rollback (rebuild a domain) or to track past changes, the backups will actually be up to date. This check is equivalent to a &lt;i&gt;REPADMIN /showbackup *&lt;/i&gt;.</value>
+    <value>A verification is done on the backups, ensuring that the backup is performed according to Microsoft standard. Indeed at each backup the DIT Database Partition Backup Signature is updated.  if for any reasons, backups are needed to perform a rollback (rebuild a domain) or to track past changes, the backups will actually be up to date. This check is equivalent to a &lt;i&gt;REPADMIN /showbackup *&lt;/i&gt;.</value>
   </data>
   <data name="A_DsHeuristicsAnonymous_TechnicalExplanation" xml:space="preserve">
     <value>The way an Active Directory behave can be controlled via the attribute &lt;i&gt;DsHeuristics&lt;/i&gt; of &lt;i&gt;CN=Directory Service,CN=Windows NT,CN=Services,CN=Configuration&lt;/i&gt;. A parameter stored in its attribute and whose value is &lt;i&gt;fLDAPBlockAnonOps&lt;/i&gt; can be set to allow access without any account on the &lt;b&gt;whole forest level&lt;/b&gt;.
@@ -1100,7 +1100,7 @@ Also this attack can also be performed using the former password of the krbtgt a
     <value>The rule is purely informative, as it gives insights regarding a best practice. It verifies if there is a GPO or PSO enforcing a 20+ characters password for the Service Account. </value>
   </data>
   <data name="A_NullSession_TechnicalExplanation" xml:space="preserve">
-    <value>Unless other rules which check for known cause of anonymous access, this rule try to enumerate accounts from the domain without any account. The program use two methods: MS-SAMR with a NULL connection and MS-LSAT which forces SID resolution with well known SID.
+    <value>Unless other rules which check for known cause of anonymous access, this rule tries to enumerate accounts from the domain without any account. The program use two methods: MS-SAMR with a NULL connection and MS-LSAT which forces SID resolution with well known SID.
 NULL sessions are deactivated by default since Windows 2003 and Windows XP. But for compatibility reasons, a setting enabling them may be still active years after.
 It is possible to verify the results provided by the PingCastle solution by using a Kali distribution. You should run [rpcclient -U " target_ip_address] and press enter at the password prompt to finally type [enumdomusers].</value>
   </data>
@@ -1228,7 +1228,7 @@ Do note that the AES key used to encrypt password in the GPO has been made publi
     <value>The SIDHistory attribute is useful when doing a migration because it allows to keep the reference to the former account. On the other hand, once the migration is over, it is mandatory that this attribute is removed to evaluate the permissions in regards with the new account and not the former one.</value>
   </data>
   <data name="S_SMB_v1_TechnicalExplanation" xml:space="preserve">
-    <value>The SMB downgrade attack is used to obtain credentials or executing commands on behalf of a user by using SMB v1 as protocol. Indeed, because SMB v1 supports old authentication protocol, the integrity can be bypassed</value>
+    <value>The SMB downgrade attack is used to obtain credentials or execute commands on behalf of a user by using the SMB v1 protocol. Indeed, because SMB v1 supports old authentication protocol, the integrity can be bypassed</value>
   </data>
   <data name="S_Vuln_MS14_068_TechnicalExplanation" xml:space="preserve">
     <value>MS14-068 is a critical vulnerability that was published on 2014-11-18. It can be used to very quickly compromise an entiere domain, which is why having DC still vulnerable to this publicly known vulnerability represents a high security risk.</value>
@@ -1517,10 +1517,10 @@ https://github.com/misterch0c/shadowbroker/tree/master/windows/exploits </value>
     <value>Check if the account has been migrated from a domain which doesn't exist anymore</value>
   </data>
   <data name="A_SMB2SignatureNotEnabled_TechnicalExplanation" xml:space="preserve">
-    <value>Python responsder is a tool used to compromise a domain by listening for SMB connections and injecting rogue data into the communications at the network level. SMB v1 does not provide a mechanism to enforce integrity and thus is compromised easily. SMB v2 (and subsequent version SMB v3) provides a way to guarantee the integrity of the network communication via a signature of each packet. By establishing a SMB v2 dialog with domain controllers, PingCastle checks the signature capability by looking at the SMB options provided by the server.</value>
+    <value>Python responder is a tool used to compromise a domain by listening for SMB connections and injecting rogue data into the communications at the network level. SMB v1 does not provide a mechanism to enforce integrity and thus is compromised easily. SMB v2 (and subsequent version SMB v3) provides a way to guarantee the integrity of the network communication via a signature of each packet. By establishing a SMB v2 dialog with domain controllers, PingCastle checks the signature capability by looking at the SMB options provided by the server.</value>
   </data>
   <data name="A_SMB2SignatureNotRequired_TechnicalExplanation" xml:space="preserve">
-    <value>Python responsder is a tool used to compromise a domain by listening for SMB connections and injecting rogue data into the communications at the network level. SMB v1 does not provide a mechanism to enforce integrity and thus is compromised easily. SMB v2 (and subsequent version SMB v3) provides a way to guarantee the integrity of the network communication via a signature of each packet. By establishing a SMB v2 dialog with domain controllers, PingCastle checks the signature capability by looking at the SMB options provided by the server.</value>
+    <value>Python responder is a tool used to compromise a domain by listening for SMB connections and injecting rogue data into the communications at the network level. SMB v1 does not provide a mechanism to enforce integrity and thus is compromised easily. SMB v2 (and subsequent version SMB v3) provides a way to guarantee the integrity of the network communication via a signature of each packet. By establishing a SMB v2 dialog with domain controllers, PingCastle checks the signature capability by looking at the SMB options provided by the server.</value>
   </data>
   <data name="A_SMB2SignatureNotEnabled_Documentation" xml:space="preserve">
     <value>https://msdn.microsoft.com/en-us/library/cc246675.aspx</value>
@@ -1651,7 +1651,7 @@ https://adsecurity.org/?p=1667</value>
     <value>https://blogs.technet.microsoft.com/exchange/2009/09/23/exchange-2010-and-resolution-of-the-adminsdholder-elevation-issue/</value>
   </data>
   <data name="P_DelegationKeyAdmin_Title" xml:space="preserve">
-    <value>Ensure that boggus Windows 2016 AD prep did not introduce vulnerabilities</value>
+    <value>Ensure that the Windows 2016 ADPREP did not introduce vulnerabilities</value>
   </data>
   <data name="P_DelegationKeyAdmin_Description" xml:space="preserve">
     <value>The purpose is to ensure that no weakness has been introduced at Windows 2016 installation.</value>
@@ -1660,7 +1660,7 @@ https://adsecurity.org/?p=1667</value>
     <value>After having carefuly studied the possible impact of the following change, apply the script made by MSRC and referenced in the documentation below to alter the permission.</value>
   </data>
   <data name="P_DelegationKeyAdmin_Rationale" xml:space="preserve">
-    <value>A bogus Windows 2016 installation has granted to much right to the Enterprise Key Admins group</value>
+    <value>A Windows 2016 installation has granted elevated privileged to the Enterprise Key Admins group, which is inappropriate.</value>
   </data>
   <data name="P_DelegationKeyAdmin_TechnicalExplanation" xml:space="preserve">
     <value>After performing adprep /domainprep from Windows Server 2016 sources there may be an unwanted AccessControlEntry (ACE) in the DiscretionaryACL (DACL) of the targeted domain-naming-context's SecurityDescriptor (SD) that grants FullControl permission to the Enterprise Key Admins group ( SID = ending with -527 ).
@@ -1703,7 +1703,7 @@ https://secureidentity.se/adprep-bug-in-windows-server-2016/</value>
     <value></value>
   </data>
   <data name="P_DelegationGPOData_Rationale" xml:space="preserve">
-    <value>Number of gpo items that can be modified by any user: {count}</value>
+    <value>Number of GPO items that can be modified by any user: {count}</value>
   </data>
   <data name="P_DelegationGPOData_Solution" xml:space="preserve">
     <value>Edit the Access Control List (ACL) of the GPO object or the directory where the items is located. Then remove any write permission given to the group.</value>
