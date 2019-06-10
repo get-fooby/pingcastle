@@ -560,8 +560,9 @@ To solve the anomaly, you should implement a PSO or GPO password to mandate a 20
   </data>
   <data name="A_Krbtgt_Solution" xml:space="preserve">
     <value>The password of the krbtgt account should be changed twice to invalidate the golden ticket attack.
-&lt;b&gt;Beware: two changes of the krbtgt password in quick succession will not replicated to all the domain controllers quick enough and will break these domain controllers&lt;/b&gt;
-There are several possibilities to change the krbtgt password. First, a Microsoft script can be run in order to guarantee the correct replication of these secrets. Unfortunately this script supports only English operating systems. Second, a more manual way is to essentialy reset the password manually once, then to wait 3 days, then to reset it again. This is the safest way as it ensures the password is no longer usable by the Golden ticket attack.</value>
+&lt;b&gt;Beware: two changes of the krbtgt password in quick succession will not replicate to all the domain controllers quick enough and will break these domain controllers&lt;/b&gt;
+There are several possibilities to change the krbtgt password. First, a Microsoft script can be run in order to guarantee the correct replication of these secrets. Unfortunately this script supports only English operating systems.
+      Second, a more manual way is to reset the password manually once, then to wait 3 days, then to reset it again. This is the safest way as it ensures the password is no longer usable by the Golden ticket attack.</value>
   </data>
   <data name="A_Krbtgt_Rationale" xml:space="preserve">
     <value>Last change of the Kerberos password: {count} day(s) ago</value>
@@ -1059,7 +1060,7 @@ It is possible to verify the results provided by the PingCastle solution by usin
   </data>
   <data name="A_Krbtgt_TechnicalExplanation" xml:space="preserve">
     <value>Kerberos is an authentication protocol. It is using to sign its tickets a secret stored as the password of the krbtgt account. If the hash of the password of the krbtgt account is retrieved, it can be use to generate authentication tickets at will.
-To mitigate this attack, it is recommanded to change the krbtgt password every 40 days. If it not the case, every backups done until the last password change of the krbtgt account can be used to emit Goldent tickets, compromising the entiere domain.
+To mitigate this attack, it is recommended to change the krbtgt password every 40 days. If it not the case, every backups done until the last password change of the krbtgt account can be used to create Golden Tickets, compromising the entire domain.
 Retrieval of this secret is one of the highest priority in an attack, as this password is rarely changed and offer a long term backdoor.
 Also this attack can also be performed using the former password of the krbtgt account</value>
   </data>
@@ -1158,7 +1159,7 @@ Do note that the AES key used to encrypt password in the GPO has been made publi
     <value>Accounts wihtin the AD have attributes indicating the creation date of the account and the last login of this account. Accounts which doesn't have a login since 6 months or created more than 6 months ago without any login are considered inactive. If an Administrator Account is set as inactive, the reason for having Administrator rights should be strongly justified.</value>
   </data>
   <data name="P_SchemaAdmin_TechnicalExplanation" xml:space="preserve">
-    <value>The group "Schema Admins" is used to give permissions to alter the schema. Once a modification is performed on the schema such as new objects, it cannot be undone. This can result in a rebuild of the domain. The best pratice is to have this group empty and to add an administrator when a schema update is required then to remove this group membership.</value>
+    <value>The group "Schema Admins" is used to give permissions to alter the schema. Once a modification is performed on the schema such as new objects, it cannot be undone. This can result in a rebuild of the domain. The best practice is to have this group empty and to add an administrator when a schema update is required then to remove this group membership.</value>
   </data>
   <data name="P_ServiceDomainAdmin_TechnicalExplanation" xml:space="preserve">
     <value>"Service Accounts" can imply a high security risk as their password are stored in clear text in the LSA database, which can then be easily exploited using Mimikatz or Cain&amp;Abel for instance. In addition, their passwords don't change and can be used in kerberoast attacks.</value>
@@ -1574,13 +1575,13 @@ https://github.com/misterch0c/shadowbroker/tree/master/windows/exploits </value>
     <value>The purpose is to ensure that credentials cannot be extracted from the DC via its printer spooler</value>
   </data>
   <data name="A_DC_Spooler_Solution" xml:space="preserve">
-    <value>The spooler service should be deactived on domain controllers. Please note as a consequence that the Printer Pruning functionality (rarely used) will be unavailable.</value>
+    <value>The spooler service should be deactivated on domain controllers. Please note as a consequence that the Printer Pruning functionality (rarely used) will be unavailable.</value>
   </data>
   <data name="A_DC_Spooler_Rationale" xml:space="preserve">
-    <value>The spooler service is remotely acccessible from {count} DC</value>
+    <value>The spooler service is remotely accessible from {count} DC</value>
   </data>
   <data name="A_DC_Spooler_TechnicalExplanation" xml:space="preserve">
-    <value>When there’s an account with unconstrained delegation configured (which is fairly common) and the Print Spooler service running on a computer, you can get that computers credentials sent to the system with unconstrained delegation as a user. With a domain controller, the TGT of the DC can be extracted allowing an attacker to reuse it with a DCSync attack and obtain all user hashes and impersonate them.</value>
+    <value>When there is an account with unconstrained delegation configured (which is fairly common) and the Print Spooler service running on a computer, you can get that computers credentials sent to the system with unconstrained delegation as a user. With a domain controller, the TGT of the DC can be extracted allowing an attacker to reuse it with a DCSync attack and obtain all user hashes and impersonate them.</value>
   </data>
   <data name="A_DC_Spooler_Detail" xml:space="preserve">
     <value>Domain Controller {0}</value>
@@ -1614,13 +1615,13 @@ https://www.slideshare.net/harmj0y/derbycon-the-unintended-risks-of-trusting-act
     <value>The purpose is to ensure no account can impersonate any account.</value>
   </data>
   <data name="P_UnconstrainedDelegation_Solution" xml:space="preserve">
-    <value>Replace unconstrained delegation by contrained delegation. In practice, on the account object, tab "delegation", replace "trust this computer for delegation to any service" by "trust this computer for delegation to specified services only".</value>
+    <value>Replace unconstrained delegation by constrained delegation. In practice, on the account object, tab "delegation", replace "trust this computer for delegation to any service" by "trust this computer for delegation to specified services only".</value>
   </data>
   <data name="P_UnconstrainedDelegation_Rationale" xml:space="preserve">
     <value>Unconstrained delegations are configured on the domain: {count} account(s)</value>
   </data>
   <data name="P_UnconstrainedDelegation_TechnicalExplanation" xml:space="preserve">
-    <value>When an unconstrained delegation is configured, the kerberos ticket TGT can be captured. This TGT grant then access to any service the user has access. If the user is administor or a domain controller (a connection can be forced using the spooler service), the domain can be compromised.</value>
+    <value>When an unconstrained delegation is configured, the kerberos ticket TGT can be captured. This TGT grant then access to any service the user has access. If the user is administrator or a domain controller (a connection can be forced using the spooler service), the domain can be compromised.</value>
   </data>
   <data name="P_UnconstrainedDelegation_Documentation" xml:space="preserve">
     <value>https://blogs.technet.microsoft.com/389thoughts/2017/04/18/get-rid-of-accounts-that-use-kerberos-unconstrained-delegation/
